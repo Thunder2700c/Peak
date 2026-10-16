@@ -1,0 +1,73 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="PEAK"
+run/main_scene="uid://qjtj5jndgcpj"
+config/features=PackedStringArray("4.7", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*uid://bn74bst4cfa3k"
+TrafficManager="*uid://dfqbbubjahx1u"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[importer_defaults]
+
+animation_library={
+&"nodes/import_as_skeleton_bones": true
+}
+
+[input]
+
+move_right={
+"deadzone": 0.2,
+"events": []
+}
+move_left={
+"deadzone": 0.2,
+"events": []
+}
+move_back={
+"deadzone": 0.2,
+"events": []
+}
+move_forward={
+"deadzone": 0.2,
+"events": []
+}
+
+[input_devices]
+
+sensors/enable_gravity=true
+
+[layer_names]
+
+3d_render/layer_17="SimpleGrassTextured interactive layer"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_repeat=1
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method.mobile="forward_plus"
+global_illumination/gi/use_half_resolution=true
+global_illumination/voxel_gi/quality=1
+viewport/hdr_2d=true
+anti_aliasing/quality/use_taa=true

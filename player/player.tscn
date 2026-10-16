@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bw251naxkefl0"]
+
+[ext_resource type="Script" uid="uid://bpmg5r0gpbh81" path="res://player/PlayerController.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://bmvbeixxhsvnm" path="res://player/BodycamCamera.gd" id="2_qjkh3"]
+[ext_resource type="Script" uid="uid://dio4oi14ba01x" path="res://player/Flashlight.gd" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://rmlo8lx6wi6q" path="res://weapons/WeaponManager.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://dm7wmtm1prbiy" path="res://weapons/Pistol.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://68a0o8kk7rvm" path="res://systems/HealthComponent.gd" id="6_g6k8r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g7b7a"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=1009193220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+script = ExtResource("1_oul6g")
+
+[node name="Head" type="Node3D" parent="." unique_id=2111342196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1853528120]
+script = ExtResource("2_qjkh3")
+
+[node name="InteractionRayCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1818377344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=1360573050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, -0.2, -0.25)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 30.0
+spot_attenuation = 2.0
+spot_angle = 40.0
+script = ExtResource("2_rkbax")
+
+[node name="WeaponManager" type="Node3D" parent="Head/Camera3D" unique_id=1698239824]
+script = ExtResource("3_g1dw6")
+
+[node name="Pistol" type="Node3D" parent="Head/Camera3D/WeaponManager" unique_id=2082146926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, -0.22, -0.5)
+script = ExtResource("4_yw30f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1835848707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_g7b7a")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1646630219]
+script = ExtResource("6_g6k8r")

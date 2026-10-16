@@ -1,0 +1,17 @@
+# Godot generated cache
+.godot/
+.import/
+
+# Godot C# generated files
+.mono/
+
+# Export configuration may contain signing credentials
+export.cfg
+export_presets.cfg
+
+# Private signing keys and environment secrets
+*.keystore
+*.jks
+*.p12
+.env
+.env.*

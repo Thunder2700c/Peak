@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://7gxgrm8txtyt"]
+
+[ext_resource type="Script" uid="uid://bejop0tx773iv" path="res://ui/MobileTouchControls.gd" id="1_0nlhb"]
+
+[node name="MobileTouchControls" type="Control" unique_id=1776839729]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0nlhb")
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="." unique_id=532487369]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+joystick_mode = 1
+joystick_size = 250.0
+tip_size = 100.0
+action_left = &"move_left"
+action_right = &"move_right"
+action_up = &"move_forward"
+action_down = &"move_back"
+
+[node name="FlashlightButton" type="Button" parent="." unique_id=300915411]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="InteractButton" type="Button" parent="." unique_id=980677961]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="FireButton" type="Button" parent="." unique_id=3772972]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

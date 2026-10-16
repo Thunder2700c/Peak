@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://p4m4f8pctxgx"]
+
+[ext_resource type="Script" uid="uid://qh1gnple6vj6" path="res://levels/TestLevel.gd" id="1_1mo47"]
+[ext_resource type="PackedScene" uid="uid://csy6033lpcjq3" path="res://levels/door.tscn" id="1_o7f2i"]
+[ext_resource type="Texture2D" uid="uid://b5gimlixwlic3" path="res://assets/ground_textures/sparse_grass_diff_2k.jpg" id="2_8fu3k"]
+[ext_resource type="PackedScene" uid="uid://bncvrdoa0h0cp" path="res://levels/crate.tscn" id="2_hsexo"]
+[ext_resource type="Texture2D" uid="uid://c4xf4l5g6mfjp" path="res://assets/ground_textures/sparse_grass_arm_2k.jpg" id="3_a48kt"]
+[ext_resource type="Texture2D" uid="uid://buxr8iystuq77" path="res://assets/ground_textures/sparse_grass_nor_gl_2k.jpg" id="4_afyat"]
+[ext_resource type="Texture2D" uid="uid://dxff44rlg2s0f" path="res://assets/metal_box_texture/metal_plate_02_diff_2k.png" id="4_yrmuy"]
+[ext_resource type="Texture2D" uid="uid://biet2yvmhyx55" path="res://assets/metal_box_texture/metal_plate_02_nor_gl_2k.png" id="5_1y6o6"]
+[ext_resource type="Texture2D" uid="uid://yb604ya8wltp" path="res://assets/metal_box_texture/metal_plate_02_ao_2k.png" id="5_7ftcw"]
+[ext_resource type="Texture2D" uid="uid://bgi7yhbmfrmc7" path="res://assets/wall_textures/rebar_reinforced_concrete_diff_2k.jpg" id="5_bcaos"]
+[ext_resource type="Texture2D" uid="uid://rlitwxcr7wuy" path="res://assets/metal_box_texture/metal_plate_02_disp_2k.png" id="5_ujexn"]
+[ext_resource type="Texture2D" uid="uid://n275ajtte8a6" path="res://assets/metal_box_texture/metal_plate_02_metal_2k.png" id="6_7ftcw"]
+[ext_resource type="Texture2D" uid="uid://cymqihaj86sp6" path="res://assets/metal_box_texture/metal_plate_02_rough_2k.png" id="6_ujexn"]
+[ext_resource type="Texture2D" uid="uid://1dxogg3ndcg5" path="res://assets/wall_textures/rebar_reinforced_concrete_arm_2k.jpg" id="6_us3su"]
+[ext_resource type="Texture2D" uid="uid://cyhq1v6iimmfy" path="res://assets/wall_textures/rebar_reinforced_concrete_nor_gl_2k.jpg" id="7_8lu1o"]
+[ext_resource type="Script" uid="uid://2twtpgrg3gaa" path="res://levels/Terrain.gd" id="16_a48kt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mo47"]
+albedo_texture = ExtResource("2_8fu3k")
+normal_enabled = true
+normal_texture = ExtResource("4_afyat")
+ao_enabled = true
+ao_texture = ExtResource("3_a48kt")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grko"]
+albedo_texture = ExtResource("4_yrmuy")
+metallic = 1.0
+metallic_texture = ExtResource("6_7ftcw")
+roughness_texture = ExtResource("6_ujexn")
+normal_enabled = true
+normal_texture = ExtResource("5_1y6o6")
+ao_enabled = true
+ao_texture = ExtResource("5_7ftcw")
+heightmap_enabled = true
+heightmap_texture = ExtResource("5_ujexn")
+heightmap_flip_texture = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afyat"]
+albedo_texture = ExtResource("4_yrmuy")
+metallic = 1.0
+metallic_texture = ExtResource("6_7ftcw")
+roughness_texture = ExtResource("6_ujexn")
+normal_enabled = true
+normal_texture = ExtResource("5_1y6o6")
+ao_enabled = true
+ao_texture = ExtResource("5_7ftcw")
+heightmap_enabled = true
+heightmap_texture = ExtResource("5_ujexn")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fu3k"]
+albedo_texture = ExtResource("4_yrmuy")
+metallic = 1.0
+metallic_texture = ExtResource("6_7ftcw")
+roughness_texture = ExtResource("6_ujexn")
+normal_enabled = true
+normal_texture = ExtResource("5_1y6o6")
+ao_enabled = true
+ao_texture = ExtResource("5_7ftcw")
+heightmap_enabled = true
+heightmap_texture = ExtResource("5_ujexn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a48kt"]
+albedo_texture = ExtResource("4_yrmuy")
+metallic = 1.0
+metallic_texture = ExtResource("6_7ftcw")
+roughness_texture = ExtResource("6_ujexn")
+normal_enabled = true
+normal_texture = ExtResource("5_1y6o6")
+ao_enabled = true
+ao_texture = ExtResource("5_7ftcw")
+heightmap_enabled = true
+heightmap_texture = ExtResource("5_ujexn")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_us3su"]
+
+[sub_resource type="Sky" id="Sky_bcaos"]
+sky_material = SubResource("ProceduralSkyMaterial_us3su")
+
+[sub_resource type="Environment" id="Environment_o7f2i"]
+background_mode = 2
+sky = SubResource("Sky_bcaos")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_intensity = 0.5
+fog_enabled = true
+fog_light_color = Color(0.65882355, 0.78039217, 0.9019608, 1)
+fog_density = 0.0015
+fog_aerial_perspective = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_anisotropy = 0.6
+volumetric_fog_length = 30.0
+volumetric_fog_temporal_reprojection_enabled = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5sxt"]
+albedo_texture = ExtResource("5_bcaos")
+normal_enabled = true
+normal_texture = ExtResource("7_8lu1o")
+ao_enabled = true
+ao_texture = ExtResource("6_us3su")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrmuy"]
+albedo_texture = ExtResource("5_bcaos")
+normal_enabled = true
+normal_texture = ExtResource("7_8lu1o")
+ao_enabled = true
+ao_texture = ExtResource("6_us3su")
+uv1_triplanar = true
+
+[node name="Level" type="NavigationRegion3D" unique_id=878864505]
+script = ExtResource("1_1mo47")
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=489063838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_1mo47")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=907026779]
+transform = Transform3D(0.81915206, -0.4262504, 0.38379753, 0, 0.66913056, 0.74314487, -0.57357645, -0.6087487, 0.54811966, 0, 0, 0)
+
+[node name="Box1" type="CSGBox3D" parent="." unique_id=474218611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 0)
+use_collision = true
+size = Vector3(2, 2, 2)
+material = SubResource("StandardMaterial3D_7grko")
+
+[node name="Box2" type="CSGBox3D" parent="." unique_id=1888022283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -16)
+use_collision = true
+size = Vector3(2, 4, 2)
+material = SubResource("StandardMaterial3D_afyat")
+
+[node name="Box3" type="CSGBox3D" parent="." unique_id=108793556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, 4)
+use_collision = true
+size = Vector3(4, 1, 4)
+material = SubResource("StandardMaterial3D_8fu3k")
+
+[node name="Box4" type="CSGBox3D" parent="." unique_id=1148726653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, 16)
+use_collision = true
+size = Vector3(1, 3, 1)
+material = SubResource("StandardMaterial3D_a48kt")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1124373082]
+environment = SubResource("Environment_o7f2i")
+
+[node name="Door" parent="." unique_id=1938661831 instance=ExtResource("1_o7f2i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -4)
+
+[node name="Wall_R" type="CSGBox3D" parent="." unique_id=282254530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, -4)
+use_collision = true
+size = Vector3(8, 3, 0.2)
+material = SubResource("StandardMaterial3D_m5sxt")
+
+[node name="Wall_L" type="CSGBox3D" parent="." unique_id=1554527707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -4)
+use_collision = true
+size = Vector3(8, 3, 0.2)
+material = SubResource("StandardMaterial3D_yrmuy")
+
+[node name="Crate" parent="." unique_id=1450087672 instance=ExtResource("2_hsexo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -2)
+
+[node name="Crate2" parent="." unique_id=1546169824 instance=ExtResource("2_hsexo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7)
+
+[node name="Terrain" type="StaticBody3D" parent="." unique_id=183831698]
+script = ExtResource("16_a48kt")

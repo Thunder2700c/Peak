@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://k866dhuh3six"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7b7a"]
+albedo_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+
+[node name="RoadStraight" type="CSGBox3D" unique_id=2103172046]
+use_collision = true
+size = Vector3(8, 0.1, 16)
+material = SubResource("StandardMaterial3D_g7b7a")
