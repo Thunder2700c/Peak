@@ -89,7 +89,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: godotengine/godot-cpp
-          ref: master
+          ref: 2bb1acf6f8ae1ce96ac7b9ba3a10b499c59c49ec
           path: native/arut_native/godot-cpp
           submodules: recursive
 
