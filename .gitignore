@@ -1,17 +1,23 @@
-# Godot generated cache
+/godot/
+/.scons_cache/
+/native/peak_native/godot-cpp/
+/native/peak_native/package/
+/bin/
+/build/
+/artifacts/
+*.so
+*.dll
+*.dylib
+*.o
+*.obj
+*.a
+*.lib
+*.zip
+*.apk
+*.aab
 .godot/
 .import/
-
-# Godot C# generated files
-.mono/
-
-# Export configuration may contain signing credentials
-export.cfg
-export_presets.cfg
-
-# Private signing keys and environment secrets
-*.keystore
-*.jks
-*.p12
-.env
-.env.*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
