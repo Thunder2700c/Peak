@@ -15,7 +15,7 @@ uniform bool use_triplanar = false;
 uniform float triplanar_sharpness : hint_range(1.0, 16.0, 1.0) = 4.0;
 
 uniform bool use_normal_map = false;
-uniform float normal_depth : hint_range(0.0, 2.0, 0.05) = 1.0;
+uniform float normal_depth : hint_range(0.0, 1.0, 0.05) = 1.0;
 uniform bool use_ao_map = false;
 
 uniform float surface_roughness : hint_range(0.0, 1.0, 0.01) = 0.9;
@@ -65,6 +65,7 @@ void fragment() {
             vec3 mapped_world_normal = normalize(
                 normal_x * weights.x + normal_y * weights.y + normal_z * weights.z
             );
+            mapped_world_normal = normalize(mix(n, mapped_world_normal, normal_depth));
 
             // Godot's fragment NORMAL is in view space.
             NORMAL = normalize((VIEW_MATRIX * vec4(mapped_world_normal, 0.0)).xyz);
