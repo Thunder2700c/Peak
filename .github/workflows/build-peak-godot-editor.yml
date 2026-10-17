@@ -76,7 +76,7 @@ jobs:
         run: ./gradlew generateGodotEditor
 
       - name: Upload Android editor APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: peak-godot-4.7-android-editor-arm64
           path: godot/bin/android_editor_builds/
@@ -133,7 +133,7 @@ jobs:
           zip -r "$GITHUB_WORKSPACE/peak-native-extension-android-arm64.zip" addons/peak_native
 
       - name: Upload native C++ extension package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: peak-native-extension-android-arm64
           path: peak-native-extension-android-arm64.zip
