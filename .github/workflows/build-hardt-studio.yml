@@ -66,3 +66,45 @@ jobs:
           path: godot/bin/godot.linuxbsd.editor.x86_64
           if-no-files-found: error
           retention-days: 14
+
+  native-extension:
+    name: Build HARDT Studio native C++ extension (Linux x86_64)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout engine project
+        uses: actions/checkout@v6
+      - name: Checkout godot-cpp
+        uses: actions/checkout@v6
+        with:
+          repository: godotengine/godot-cpp
+          ref: master
+          path: native/arut_native/godot-cpp
+          submodules: recursive
+      - name: Set up Python and SCons
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - name: Install SCons
+        run: python -m pip install scons==4.10.1
+      - name: Build Linux x86_64 libraries
+        working-directory: native/arut_native
+        run: |
+          scons platform=linux target=template_debug arch=x86_64 precision=single api_version=4.7
+          scons platform=linux target=template_release arch=x86_64 precision=single api_version=4.7
+      - name: Package native extension
+        working-directory: native/arut_native
+        run: |
+          mkdir -p package/addons/arut_native
+          cp arut_native.gdextension.in package/addons/arut_native/arut_native.gdextension
+          test -f package/addons/arut_native/bin/linux/libarut_native.linux.template_debug.x86_64.so
+          test -f package/addons/arut_native/bin/linux/libarut_native.linux.template_release.x86_64.so
+          cd package
+          zip -r "$GITHUB_WORKSPACE/hardt-native-extension-linux-x86_64.zip" addons/arut_native
+      - name: Upload native C++ extension
+        uses: actions/upload-artifact@v6
+        with:
+          name: hardt-native-extension-linux-x86_64
+          path: hardt-native-extension-linux-x86_64.zip
+          if-no-files-found: error
+          retention-days: 14
