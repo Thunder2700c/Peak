@@ -82,3 +82,60 @@ jobs:
           path: godot/bin/android_editor_builds/
           if-no-files-found: error
           retention-days: 14
+
+  build-native-cpp:
+    name: Build PEAK Native C++ Extension (Android ARM64)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout PEAK C++ source
+        uses: actions/checkout@v6
+
+      - name: Checkout godot-cpp bindings
+        uses: actions/checkout@v6
+        with:
+          repository: godotengine/godot-cpp
+          ref: master
+          path: native/peak_native/godot-cpp
+          submodules: recursive
+
+      - name: Set up Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r28b
+          link-to-sdk: true
+
+      - name: Set up Python and SCons
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Install SCons
+        run: |
+          python -m pip install scons==4.10.1
+          scons --version
+
+      - name: Compile native C++ extension for Android ARM64
+        working-directory: native/peak_native
+        run: |
+          scons platform=android target=template_debug arch=arm64 precision=single api_version=4.7
+          scons platform=android target=template_release arch=arm64 precision=single api_version=4.7
+
+      - name: Package native extension
+        working-directory: native/peak_native
+        run: |
+          mkdir -p package/addons/peak_native
+          cp peak_native.gdextension.in package/addons/peak_native/peak_native.gdextension
+          test -f package/addons/peak_native/bin/android/libpeak_native.android.template_debug.arm64.so
+          test -f package/addons/peak_native/bin/android/libpeak_native.android.template_release.arm64.so
+          cd package
+          zip -r "$GITHUB_WORKSPACE/peak-native-extension-android-arm64.zip" addons/peak_native
+
+      - name: Upload native C++ extension package
+        uses: actions/upload-artifact@v4
+        with:
+          name: peak-native-extension-android-arm64
+          path: peak-native-extension-android-arm64.zip
+          if-no-files-found: error
+          retention-days: 14
