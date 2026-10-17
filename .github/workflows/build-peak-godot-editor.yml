@@ -1,0 +1,84 @@
+name: Build PEAK Godot Android Editor (ARM64)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-editor:
+    name: Build Godot 4.7 Android Editor
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout PEAK build configuration
+        uses: actions/checkout@v6
+
+      - name: Checkout matching Godot engine source
+        uses: actions/checkout@v6
+        with:
+          repository: godotengine/godot
+          ref: 4.7-stable
+          path: godot
+          submodules: recursive
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Python and SCons
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Install SCons
+        run: |
+          python -m pip install scons==4.10.1
+          scons --version
+
+      - name: Restore SCons compilation cache
+        uses: actions/cache@v4
+        with:
+          path: godot/.scons_cache
+          key: peak-godot-4.7-android-editor-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            peak-godot-4.7-android-editor-${{ runner.os }}-
+
+      - name: Install Android Swappy dependency
+        working-directory: godot
+        run: python misc/scripts/install_swappy_android.py
+
+      - name: Apply optional PEAK engine patches
+        shell: bash
+        run: |
+          shopt -s nullglob
+          patches=(engine/patches/*.patch)
+          if (( ${#patches[@]} == 0 )); then
+            echo "No engine patches yet; this is the clean Godot 4.7 ARM64 baseline build."
+          else
+            for patch in "${patches[@]}"; do
+              echo "Applying ${patch}"
+              git -C godot apply "$GITHUB_WORKSPACE/${patch}"
+            done
+          fi
+
+      - name: Compile Android editor engine
+        working-directory: godot
+        run: |
+          scons platform=android target=editor arch=arm64 production=yes dev_mode=yes module_text_server_fb_enabled=yes swappy=yes cache_path=.scons_cache/ redirect_build_objects=no
+
+      - name: Package Android editor APK
+        working-directory: godot/platform/android/java
+        run: ./gradlew generateGodotEditor
+
+      - name: Upload Android editor APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: peak-godot-4.7-android-editor-arm64
+          path: godot/bin/android_editor_builds/
+          if-no-files-found: error
+          retention-days: 14
