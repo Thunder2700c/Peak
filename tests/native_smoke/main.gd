@@ -16,15 +16,15 @@ func _ready() -> void:
 
 	report.text = "ARUT-HARDT Native C++\n\nChecking extension..."
 
-	if not ClassDB.class_exists("PeakNativeRuntime"):
-		report.text = "EXTENSION NOT LOADED\n\nPeakNativeRuntime is not registered. Check the Godot Output/Debugger for the GDExtension loader error."
-		push_error("[ARUT] PeakNativeRuntime is not registered.")
+	if not ClassDB.class_exists("ArutRuntime"):
+		report.text = "EXTENSION NOT LOADED\n\nArutRuntime is not registered. Check Godot Output/Debugger for the GDExtension loader error."
+		push_error("[ARUT] ArutRuntime is not registered.")
 		return
 
-	var instance: Object = ClassDB.instantiate("PeakNativeRuntime")
+	var instance: Object = ClassDB.instantiate("ArutRuntime")
 	if instance == null:
 		report.text = "CLASS FOUND, BUT CREATION FAILED\n\nCheck the extension logs."
-		push_error("[ARUT] Could not instantiate PeakNativeRuntime.")
+		push_error("[ARUT] Could not instantiate ArutRuntime.")
 		return
 
 	if not instance.has_method("get_build_info"):
