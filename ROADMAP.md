@@ -13,7 +13,7 @@ Statuses apply to the initial foundation; nothing is marked built or tested with
 **Gate:** dedicated engine repository, no PEAK assets, coherent/manual build setup.
 
 ## Phase 1 — Native C++ proof (scaffolded, not runtime-verified)
-- [x] Implement PeakNativeRuntime::get_build_info().
+- [x] Implement ArutRuntime::get_build_info().
 - [x] Add on-screen smoke test.
 - [ ] Build artifact from the engine repository.
 - [ ] Confirm class registration, instantiation and returned build info on target.
