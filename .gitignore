@@ -1,7 +1,7 @@
 /godot/
 /.scons_cache/
-/native/peak_native/godot-cpp/
-/native/peak_native/package/
+/native/arut_native/godot-cpp/
+/native/arut_native/package/
 /bin/
 /build/
 /artifacts/
