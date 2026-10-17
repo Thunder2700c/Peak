@@ -98,7 +98,7 @@ func _make_checker_texture() -> ImageTexture:
 	var image := Image.create(64, 64, false, Image.FORMAT_RGBA8)
 	for y in range(64):
 		for x in range(64):
-			var cell := ((x / 8) + (y / 8)) % 2
+			var cell: int = (floori(float(x) / 8.0) + floori(float(y) / 8.0)) % 2
 			var color := Color(0.30, 0.58, 0.31) if cell == 0 else Color(0.40, 0.68, 0.37)
 			image.set_pixel(x, y, color)
 	return ImageTexture.create_from_image(image)
